@@ -59,6 +59,9 @@
 #include <QAction>
 #include <QIcon>
 #include <QResource>
+#include <stdio.h>
+#include <X11/Xlib.h>
+#include <X11/X.h>
 
 
 
@@ -72,6 +75,7 @@ protected:
     void timerEvent(QTimerEvent *) override;
     void render(QPainter *p);
     void render();
+    void updateState();
     void paintEvent(QPaintEvent* event) override;
     void createSystemTray();
 
@@ -79,13 +83,14 @@ private slots:
     void update_pos();
 
 private:
-    float ratio = 0.2, screenWidth = 100, screenHeight = 100, windowWidth = 100, windowHeight = 100;
+    float ratio = 0.2, displayHeight = 100, displayWidth = 100, screenWidth = 100, screenHeight = 100, windowWidth = 100, windowHeight = 100;
     int m_timerId;
     QSystemTrayIcon *trayIcon = nullptr;
     QAction *minimizeAction;
     QAction *restoreAction;
     QAction *quitAction;
     QMenu *trayIconMenu;
+    Display* primaryDisplay;
 };
 
 
@@ -108,6 +113,9 @@ AnalogClockWindow::AnalogClockWindow(QWidget* parent)
     setAttribute(Qt::WA_TranslucentBackground);
     setAttribute(Qt::WA_ShowWithoutActivating);
     // setStyleSheet("");
+    primaryDisplay = XOpenDisplay(NULL);
+    int screen_num = DefaultScreen(primaryDisplay);
+    displayWidth = DisplayWidth(primaryDisplay, screen_num), displayHeight = DisplayHeight(primaryDisplay, screen_num);
     screenWidth = QApplication::primaryScreen()->size().width(), screenHeight = QApplication::primaryScreen()->size().height();
     ratio = 0.2;
     windowWidth = qMin(screenWidth*ratio, screenHeight*ratio), windowHeight = windowWidth;
@@ -130,8 +138,31 @@ void AnalogClockWindow::timerEvent(QTimerEvent *event)
     if (event->timerId() == m_timerId)
     {
         // std::cout << "clock" << std::endl;
+        updateState();
         update();
         // setWindowState(Qt::WindowActive);
+    }
+}
+
+void AnalogClockWindow::updateState()
+{
+    Window w;
+    int revert_to;
+    XGetInputFocus(primaryDisplay, &w, &revert_to);
+    if(w == None)
+    {
+        std::cout << "Error!" << std::endl;
+    }
+    XWindowAttributes window_attributes;
+    Status s = XGetWindowAttributes(primaryDisplay, w, &window_attributes);
+//    std::cout<< window_attributes.height << ", " << window_attributes.width << std::endl;
+    if(window_attributes.height == displayHeight && window_attributes.width == displayWidth)
+    {
+        showNormal();
+    }
+    else
+    {
+        hide();
     }
 }
 

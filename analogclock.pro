@@ -11,3 +11,5 @@ INSTALLS += target
 QT += widgets
       gui
       core
+
+LIBS += -L/usr/X11/lib -lX11
