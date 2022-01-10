@@ -155,8 +155,18 @@ void AnalogClockWindow::updateState()
     }
     XWindowAttributes window_attributes;
     Status s = XGetWindowAttributes(primaryDisplay, w, &window_attributes);
+    if (window_attributes.height == 1 && window_attributes.width == 1)
+    {
+        Window parent, root;
+        Window* children;
+        unsigned int num_children;
+        if(XQueryTree(primaryDisplay, w, &root, &parent, &children, &num_children))
+        {
+            XGetWindowAttributes(primaryDisplay, parent, &window_attributes);
+        }
+    }
 //    std::cout<< window_attributes.height << ", " << window_attributes.width << std::endl;
-    if(window_attributes.height == displayHeight && window_attributes.width == displayWidth)
+    if((window_attributes.height == displayHeight && window_attributes.width == displayWidth))
     {
         showNormal();
     }
