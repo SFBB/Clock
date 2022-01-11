@@ -86,11 +86,17 @@ private:
     float ratio = 0.2, displayHeight = 100, displayWidth = 100, screenWidth = 100, screenHeight = 100, windowWidth = 100, windowHeight = 100;
     int m_timerId;
     QSystemTrayIcon *trayIcon = nullptr;
-    QAction *minimizeAction;
-    QAction *restoreAction;
+    QAction *hideAction;
+    QAction *showAction;
+    QAction *smartHideAction;
     QAction *quitAction;
     QMenu *trayIconMenu;
     Display* primaryDisplay;
+
+    bool forceHide = false, forceShow = false;
+    void hideWindow();
+    void showWindow();
+    void smartHideWindow();
 };
 
 
@@ -166,7 +172,7 @@ void AnalogClockWindow::updateState()
         }
     }
 //    std::cout<< window_attributes.height << ", " << window_attributes.width << std::endl;
-    if((window_attributes.height == displayHeight && window_attributes.width == displayWidth))
+    if(forceShow || ((!forceHide) && (window_attributes.height == displayHeight && window_attributes.width == displayWidth)))
     {
         showNormal();
     }
@@ -188,16 +194,19 @@ void AnalogClockWindow::createSystemTray()
 {
 
     QResource::registerResource("/home/tomtony/Documents/Clock/Clock/qr.rcc");
-    minimizeAction = new QAction(tr("Mi&nimize"), this);
-    connect(minimizeAction, &QAction::triggered, this, &QWidget::hide);
-    restoreAction = new QAction(tr("&Restore"), this);
-    connect(restoreAction, &QAction::triggered, this, &QWidget::showNormal);
+    hideAction = new QAction(tr("Hide"), this);
+    connect(hideAction, &QAction::triggered, this, &AnalogClockWindow::hideWindow);
+    showAction = new QAction(tr("&Show"), this);
+    connect(showAction, &QAction::triggered, this, &AnalogClockWindow::showWindow);
+    smartHideAction = new QAction(tr("&Smart Hide"), this);
+    connect(smartHideAction, &QAction::triggered, this, &AnalogClockWindow::smartHideWindow);
     quitAction = new QAction(tr("&Quit"), this);
     connect(quitAction, &QAction::triggered, qApp, &QCoreApplication::quit);
 
     trayIconMenu = new QMenu(this);
-    trayIconMenu->addAction(minimizeAction);
-    trayIconMenu->addAction(restoreAction);
+    trayIconMenu->addAction(hideAction);
+    trayIconMenu->addAction(showAction);
+    trayIconMenu->addAction(smartHideAction);
     trayIconMenu->addAction(quitAction);
 
     trayIcon = new QSystemTrayIcon(this);
@@ -205,9 +214,31 @@ void AnalogClockWindow::createSystemTray()
     trayIcon->setIcon(QIcon(":/Icons/systemTray.png"));
 
     trayIcon->setVisible(true);
-    minimizeAction->setVisible(true);
-    restoreAction->setVisible(true);
+    hideAction->setVisible(true);
+    showAction->setVisible(true);
+    smartHideAction->setVisible(true);
     quitAction->setVisible(true);
+}
+
+void AnalogClockWindow::hideWindow()
+{
+    forceHide = true;
+    forceShow = false;
+    updateState();
+}
+
+void AnalogClockWindow::showWindow()
+{
+    forceHide = false;
+    forceShow = true;
+    updateState();
+}
+
+void AnalogClockWindow::smartHideWindow()
+{
+    forceHide = false;
+    forceShow = false;
+    updateState();
 }
 
 void AnalogClockWindow::paintEvent(QPaintEvent* event)
