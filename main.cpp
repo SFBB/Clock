@@ -272,6 +272,12 @@ void AnalogClockWindow::render(QPainter *p)
         QPoint(-3, 8),
         QPoint(0, -40)
     };
+    static const QPoint hourMarkPlus[4] = {
+        QPoint(87, -1),
+        QPoint(87, 1),
+        QPoint(97, 1),
+        QPoint(97, -1)
+    };
     static const QPoint minuteHand[3] = {
         QPoint(7, 8),
         QPoint(-7, 8),
@@ -287,6 +293,9 @@ void AnalogClockWindow::render(QPainter *p)
     QColor hourColorPlus(255, 255, 255);
     QColor minuteColor(0, 127, 127, 191);
     QColor minuteColorPlus(255, 255, 255);
+
+    QPen minutePen(minuteColor, 2), minutePenPlus(minuteColorPlus, 1);
+    QPen hourPen(hourColor, 5), hourPenPlus(hourColorPlus, 2);
 
     p->setRenderHint(QPainter::Antialiasing);
 
@@ -307,10 +316,11 @@ void AnalogClockWindow::render(QPainter *p)
     p->drawConvexPolygon(hourHandPlus, 3);
     p->restore();
 
-    p->setPen(hourColor);
-
     for (int i = 0; i < 12; ++i) {
+        p->setPen(hourPen);
         p->drawLine(88, 0, 96, 0);
+        p->setPen(hourPenPlus);
+        p->drawLine(89, 0, 95, 0);
         p->rotate(30.0);
     }
 
@@ -324,11 +334,14 @@ void AnalogClockWindow::render(QPainter *p)
     p->drawConvexPolygon(minuteHandPlus, 3);
     p->restore();
 
-    p->setPen(minuteColor);
-
     for (int j = 0; j < 60; ++j) {
         if ((j % 5) != 0)
+        {
+            p->setPen(minutePen);
             p->drawLine(92, 0, 96, 0);
+//            p->setPen(minutePenPlus);
+//            p->drawLine(93, 0, 95, 0);
+        }
         p->rotate(6.0);
     }
 }
