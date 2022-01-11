@@ -187,7 +187,7 @@ void AnalogClockWindow::update_pos()
 void AnalogClockWindow::createSystemTray()
 {
 
-    QResource::registerResource("/home/tomtony/Documents/Clock/analogclock/qr.rcc");
+    QResource::registerResource("/home/tomtony/Documents/Clock/Clock/qr.rcc");
     minimizeAction = new QAction(tr("Mi&nimize"), this);
     connect(minimizeAction, &QAction::triggered, this, &QWidget::hide);
     restoreAction = new QAction(tr("&Restore"), this);
@@ -236,14 +236,26 @@ void AnalogClockWindow::render(QPainter *p)
         QPoint(-7, 8),
         QPoint(0, -40)
     };
+    static const QPoint hourHandPlus[3] = {
+        QPoint(3, 8),
+        QPoint(-3, 8),
+        QPoint(0, -40)
+    };
     static const QPoint minuteHand[3] = {
         QPoint(7, 8),
         QPoint(-7, 8),
         QPoint(0, -70)
     };
+    static const QPoint minuteHandPlus[3] = {
+        QPoint(3, 8),
+        QPoint(-3, 8),
+        QPoint(0, -70)
+    };
 
     QColor hourColor(127, 0, 127);
+    QColor hourColorPlus(255, 255, 255);
     QColor minuteColor(0, 127, 127, 191);
+    QColor minuteColorPlus(255, 255, 255);
 
     p->setRenderHint(QPainter::Antialiasing);
 
@@ -260,6 +272,8 @@ void AnalogClockWindow::render(QPainter *p)
     p->save();
     p->rotate(30.0 * ((time.hour() + time.minute() / 60.0)));
     p->drawConvexPolygon(hourHand, 3);
+    p->setBrush(hourColorPlus);
+    p->drawConvexPolygon(hourHandPlus, 3);
     p->restore();
 
     p->setPen(hourColor);
@@ -275,6 +289,8 @@ void AnalogClockWindow::render(QPainter *p)
     p->save();
     p->rotate(6.0 * (time.minute() + time.second() / 60.0));
     p->drawConvexPolygon(minuteHand, 3);
+    p->setBrush(minuteColorPlus);
+    p->drawConvexPolygon(minuteHandPlus, 3);
     p->restore();
 
     p->setPen(minuteColor);
