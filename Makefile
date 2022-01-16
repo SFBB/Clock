@@ -17,7 +17,7 @@ CXX           = g++
 DEFINES       = -DQT_NO_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_CORE_LIB
 CFLAGS        = -pipe -O2 -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -O2 -Wall -Wextra -D_REENTRANT -fPIC $(DEFINES)
-INCPATH       = -I. -I../../../Qt/5.15.2/gcc_64/include -I../../../Qt/5.15.2/gcc_64/include/QtWidgets -I../../../Qt/5.15.2/gcc_64/include/QtGui -I../../../Qt/5.15.2/gcc_64/include/QtCore -I. -I/usr/include/libdrm -I../../../Qt/5.15.2/gcc_64/mkspecs/linux-g++
+INCPATH       = -I. -I/usr/include/qt -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I. -I/usr/lib/qt/mkspecs/linux-g++
 QMAKE         = /usr/bin/qmake
 DEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
@@ -39,8 +39,8 @@ COMPRESS      = gzip -9f
 DISTNAME      = analogclock1.0.0
 DISTDIR = /home/tomtony/Documents/Clock/Clock/.tmp/analogclock1.0.0
 LINK          = g++
-LFLAGS        = -Wl,-O1 -Wl,-rpath,/home/tomtony/Qt/5.15.2/gcc_64/lib
-LIBS          = $(SUBLIBS) -L/usr/X11/lib -lX11 /home/tomtony/Qt/5.15.2/gcc_64/lib/libQt5Widgets.so /home/tomtony/Qt/5.15.2/gcc_64/lib/libQt5Gui.so /home/tomtony/Qt/5.15.2/gcc_64/lib/libQt5Core.so -lGL -lpthread   
+LFLAGS        = -Wl,-O1 -fPIC
+LIBS          = $(SUBLIBS) -L/usr/X11/lib -lX11 /usr/lib/libQt5Widgets.so /usr/lib/libQt5Gui.so /usr/lib/libQt5Core.so -lGL -lpthread   
 AR            = ar cqs
 RANLIB        = 
 SED           = sed
@@ -54,216 +54,290 @@ OBJECTS_DIR   = ./
 
 SOURCES       = main.cpp 
 OBJECTS       = main.o
-DIST          = ../../../Qt/5.15.2/gcc_64/mkspecs/features/spec_pre.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/common/unix.conf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/common/linux.conf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/common/sanitize.conf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/common/gcc-base.conf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/common/gcc-base-unix.conf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/common/g++-base.conf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/common/g++-unix.conf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/qconfig.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3danimation.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3danimation_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dcore.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dcore_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dextras.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dextras_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dinput.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dinput_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dlogic.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dlogic_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquick.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquick_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickanimation.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickanimation_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickextras.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickextras_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickinput.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickinput_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickrender.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickrender_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickscene2d.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickscene2d_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3drender.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3drender_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_accessibility_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_bluetooth.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_bluetooth_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_bodymovin_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_bootstrap_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_charts.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_charts_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_concurrent.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_concurrent_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_core.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_core_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_datavisualization.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_datavisualization_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_dbus.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_dbus_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_designer.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_designer_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_designercomponents_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_devicediscovery_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_edid_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_egl_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_fb_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_fontdatabase_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_gamepad.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_gamepad_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_glx_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_gui.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_gui_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_help.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_help_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_input_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_kms_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_linuxaccessibility_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_location.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_location_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_multimedia.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_multimedia_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_multimediagsttools_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_multimediawidgets.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_network.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_network_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_networkauth.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_networkauth_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_nfc.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_nfc_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_opengl.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_opengl_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_openglextensions.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_openglextensions_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_packetprotocol_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_platformcompositor_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_positioning.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_positioning_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_positioningquick.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_positioningquick_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_printsupport.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_printsupport_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_purchasing.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_purchasing_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qml.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qml_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qmldebug_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qmldevtools_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qmlmodels.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qmlmodels_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qmltest.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qmltest_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qmlworkerscript.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qmlworkerscript_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3d.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3d_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3dassetimport.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3dassetimport_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3drender.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3drender_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3druntimerender.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3druntimerender_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3dutils.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3dutils_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quickcontrols2.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quickcontrols2_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quickparticles_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quickshapes_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quicktemplates2.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quicktemplates2_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quickwidgets.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quickwidgets_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_remoteobjects.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_remoteobjects_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_repparser.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_repparser_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_script.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_script_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_scripttools.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_scripttools_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_scxml.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_scxml_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_sensors.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_sensors_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_serialbus.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_serialbus_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_serialport.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_serialport_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_service_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_sql.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_sql_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_svg.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_svg_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_testlib.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_testlib_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_texttospeech.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_texttospeech_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_theme_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_uiplugin.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_uitools.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_uitools_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_virtualkeyboard.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_virtualkeyboard_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_vulkan_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_waylandclient.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_waylandclient_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_waylandcompositor.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_waylandcompositor_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webchannel.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webchannel_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webengine.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webengine_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webenginecore.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webenginecore_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webenginecoreheaders_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webenginewidgets.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webenginewidgets_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_websockets.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_websockets_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webview.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webview_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_widgets.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_widgets_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_x11extras.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_x11extras_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_xkbcommon_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_xml.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_xml_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_xmlpatterns.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_xmlpatterns_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/qt_functions.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/qt_config.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/linux-g++/qmake.conf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/spec_post.prf \
+DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
+		/usr/lib/qt/mkspecs/common/unix.conf \
+		/usr/lib/qt/mkspecs/common/linux.conf \
+		/usr/lib/qt/mkspecs/common/sanitize.conf \
+		/usr/lib/qt/mkspecs/common/gcc-base.conf \
+		/usr/lib/qt/mkspecs/common/gcc-base-unix.conf \
+		/usr/lib/qt/mkspecs/common/g++-base.conf \
+		/usr/lib/qt/mkspecs/common/g++-unix.conf \
+		/usr/lib/qt/mkspecs/qconfig.pri \
+		/usr/lib/qt/mkspecs/modules/qt_AkonadiAgentBase.pri \
+		/usr/lib/qt/mkspecs/modules/qt_AkonadiCalendar.pri \
+		/usr/lib/qt/mkspecs/modules/qt_AkonadiContact.pri \
+		/usr/lib/qt/mkspecs/modules/qt_AkonadiCore.pri \
+		/usr/lib/qt/mkspecs/modules/qt_AkonadiMime.pri \
+		/usr/lib/qt/mkspecs/modules/qt_AkonadiNotes.pri \
+		/usr/lib/qt/mkspecs/modules/qt_AkonadiWidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_AkonadiXml.pri \
+		/usr/lib/qt/mkspecs/modules/qt_Attica.pri \
+		/usr/lib/qt/mkspecs/modules/qt_Baloo.pri \
+		/usr/lib/qt/mkspecs/modules/qt_BluezQt.pri \
+		/usr/lib/qt/mkspecs/modules/qt_ContactEditor.pri \
+		/usr/lib/qt/mkspecs/modules/qt_GrantleeTheme.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KActivities.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KActivitiesStats.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KAlarmCal.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KArchive.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KAuth.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KAuthCore.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KBookmarks.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KCalendarCore.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KCalUtils.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KCddb.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KCMUtils.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KCodecs.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KCompletion.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KConfigCore.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KConfigGui.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KConfigWidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KContacts.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KCoreAddons.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KCrash.pri \
+		/usr/lib/qt/mkspecs/modules/qt_kdav.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KDBusAddons.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KDeclarative.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KDESu.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KDNSSD.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KDSoapClient.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KDSoapServer.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KEmoticons.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KFileMetaData.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KGAPIBlogger.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KGAPICalendar.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KGAPIContacts.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KGAPICore.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KGAPIDrive.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KGAPILatitude.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KGAPIMaps.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KGAPITasks.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KGlobalAccel.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KGuiAddons.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KHolidays.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KHtml.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KI18n.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KIconThemes.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KIdentityManagement.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KIdleTime.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KIMAP.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KIOCore.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KIOFileWidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KIOGui.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KIOWidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_Kirigami2.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KItemModels.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KItemViews.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KJobWidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KJS.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KJSApi.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KMailTransport.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KMailTransportAkonadi.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KMbox.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KMime.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KNewStuff.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KNewStuffCore.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KNotifications.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KNotifyConfig.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KNTLM.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KontactInterface.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KParts.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KPeople.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KPeopleWidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KPIMTextEdit.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KPty.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KRunner.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KScreen.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KService.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KSMTP.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KSyntaxHighlighting.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KTextEditor.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KTextWidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KUnitConversion.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KUserFeedbackCore.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KUserFeedbackWidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KWallet.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KWaylandClient.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KWaylandServer.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KWidgetsAddons.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KWindowSystem.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KXmlGui.pri \
+		/usr/lib/qt/mkspecs/modules/qt_Ldap.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_accessibility_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_bootstrap_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_concurrent.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_concurrent_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_core.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_core_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_dbus.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_dbus_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_designer.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_designer_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_designercomponents_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_devicediscovery_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_edid_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_egl_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_fb_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_fontdatabase_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_glx_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_gui.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_gui_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_help.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_help_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_hunspellinputmethod_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_input_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_kms_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_linuxaccessibility_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_location.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_location_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_multimedia.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_multimedia_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_multimediagsttools_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_multimediawidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_multimediawidgets_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_network.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_network_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_networkauth.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_networkauth_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_opengl.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_opengl_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_openglextensions.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_openglextensions_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_packetprotocol_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_pdf.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_pdf_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_pdfwidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_pdfwidgets_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_platformcompositor_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_positioning.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_positioning_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_positioningquick.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_positioningquick_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_printsupport.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_printsupport_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qml.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qml_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmldebug_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmldevtools_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmlmodels.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmlmodels_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmltest.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmltest_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmlworkerscript.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmlworkerscript_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3d.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3d_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3dassetimport.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3dassetimport_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3drender.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3drender_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3druntimerender.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3druntimerender_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3dutils.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3dutils_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quickcontrols2.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quickcontrols2_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quickparticles_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quickshapes_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quicktemplates2.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quicktemplates2_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quickwidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quickwidgets_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_script.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_script_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_scripttools.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_scripttools_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_sensors.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_sensors_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_serialport.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_serialport_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_service_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_sql.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_sql_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_svg.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_svg_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_testlib.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_testlib_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_texttospeech.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_texttospeech_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_theme_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_uiplugin.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_uitools.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_uitools_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_virtualkeyboard.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_virtualkeyboard_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_vulkan_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_waylandclient.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_waylandclient_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_waylandcompositor.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_waylandcompositor_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webchannel.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webchannel_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webengine.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webengine_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webenginecore.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webenginecore_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webenginecoreheaders_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webenginewidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webenginewidgets_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webkit.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webkit_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webkitwidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webkitwidgets_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_widgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_widgets_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_x11extras.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_x11extras_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_xkbcommon_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_xml.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_xml_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_xmlpatterns.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_xmlpatterns_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_Libkdepim.pri \
+		/usr/lib/qt/mkspecs/modules/qt_Libkleo.pri \
+		/usr/lib/qt/mkspecs/modules/qt_phonon4qt5.pri \
+		/usr/lib/qt/mkspecs/modules/qt_PimCommon.pri \
+		/usr/lib/qt/mkspecs/modules/qt_PimCommonAkonadi.pri \
+		/usr/lib/qt/mkspecs/modules/qt_Prison.pri \
+		/usr/lib/qt/mkspecs/modules/qt_Qt5Keychain.pri \
+		/usr/lib/qt/mkspecs/modules/qt_QuickAddons.pri \
+		/usr/lib/qt/mkspecs/modules/qt_Solid.pri \
+		/usr/lib/qt/mkspecs/modules/qt_SonnetCore.pri \
+		/usr/lib/qt/mkspecs/modules/qt_SonnetUi.pri \
+		/usr/lib/qt/mkspecs/modules/qt_Syndication.pri \
+		/usr/lib/qt/mkspecs/modules/qt_ThreadWeaver.pri \
+		/usr/lib/qt/mkspecs/features/qt_functions.prf \
+		/usr/lib/qt/mkspecs/features/qt_config.prf \
+		/usr/lib/qt/mkspecs/linux-g++/qmake.conf \
+		/usr/lib/qt/mkspecs/features/spec_post.prf \
 		.qmake.stash \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/exclusive_builds.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/toolchain.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/default_pre.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/resolve_config.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/default_post.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/warn_on.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/qt.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/resources_functions.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/resources.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/moc.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/unix/opengl.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/uic.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/unix/thread.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/qmake_use.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/file_copies.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/testcase_targets.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/exceptions.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/yacc.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/lex.prf \
+		/usr/lib/qt/mkspecs/features/exclusive_builds.prf \
+		/usr/lib/qt/mkspecs/features/toolchain.prf \
+		/usr/lib/qt/mkspecs/features/default_pre.prf \
+		/usr/lib/qt/mkspecs/features/resolve_config.prf \
+		/usr/lib/qt/mkspecs/features/default_post.prf \
+		/usr/lib/qt/mkspecs/features/warn_on.prf \
+		/usr/lib/qt/mkspecs/features/qt.prf \
+		/usr/lib/qt/mkspecs/features/resources_functions.prf \
+		/usr/lib/qt/mkspecs/features/resources.prf \
+		/usr/lib/qt/mkspecs/features/moc.prf \
+		/usr/lib/qt/mkspecs/features/link_ltcg.prf \
+		/usr/lib/qt/mkspecs/features/unix/opengl.prf \
+		/usr/lib/qt/mkspecs/features/uic.prf \
+		/usr/lib/qt/mkspecs/features/unix/thread.prf \
+		/usr/lib/qt/mkspecs/features/qmake_use.prf \
+		/usr/lib/qt/mkspecs/features/file_copies.prf \
+		/usr/lib/qt/mkspecs/features/testcase_targets.prf \
+		/usr/lib/qt/mkspecs/features/exceptions.prf \
+		/usr/lib/qt/mkspecs/features/yacc.prf \
+		/usr/lib/qt/mkspecs/features/lex.prf \
 		analogclock.pro  main.cpp
 QMAKE_TARGET  = analogclock
 DESTDIR       = 
@@ -276,428 +350,576 @@ first: all
 analogclock:  $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
-Makefile: analogclock.pro ../../../Qt/5.15.2/gcc_64/mkspecs/linux-g++/qmake.conf ../../../Qt/5.15.2/gcc_64/mkspecs/features/spec_pre.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/common/unix.conf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/common/linux.conf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/common/sanitize.conf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/common/gcc-base.conf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/common/gcc-base-unix.conf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/common/g++-base.conf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/common/g++-unix.conf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/qconfig.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3danimation.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3danimation_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dcore.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dcore_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dextras.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dextras_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dinput.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dinput_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dlogic.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dlogic_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquick.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquick_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickanimation.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickanimation_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickextras.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickextras_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickinput.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickinput_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickrender.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickrender_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickscene2d.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickscene2d_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3drender.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3drender_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_accessibility_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_bluetooth.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_bluetooth_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_bodymovin_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_bootstrap_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_charts.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_charts_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_concurrent.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_concurrent_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_core.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_core_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_datavisualization.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_datavisualization_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_dbus.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_dbus_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_designer.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_designer_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_designercomponents_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_devicediscovery_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_edid_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_egl_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_fb_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_fontdatabase_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_gamepad.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_gamepad_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_glx_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_gui.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_gui_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_help.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_help_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_input_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_kms_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_linuxaccessibility_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_location.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_location_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_multimedia.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_multimedia_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_multimediagsttools_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_multimediawidgets.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_network.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_network_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_networkauth.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_networkauth_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_nfc.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_nfc_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_opengl.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_opengl_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_openglextensions.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_openglextensions_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_packetprotocol_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_platformcompositor_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_positioning.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_positioning_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_positioningquick.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_positioningquick_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_printsupport.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_printsupport_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_purchasing.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_purchasing_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qml.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qml_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qmldebug_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qmldevtools_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qmlmodels.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qmlmodels_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qmltest.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qmltest_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qmlworkerscript.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qmlworkerscript_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3d.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3d_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3dassetimport.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3dassetimport_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3drender.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3drender_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3druntimerender.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3druntimerender_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3dutils.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3dutils_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quickcontrols2.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quickcontrols2_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quickparticles_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quickshapes_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quicktemplates2.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quicktemplates2_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quickwidgets.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quickwidgets_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_remoteobjects.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_remoteobjects_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_repparser.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_repparser_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_script.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_script_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_scripttools.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_scripttools_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_scxml.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_scxml_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_sensors.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_sensors_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_serialbus.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_serialbus_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_serialport.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_serialport_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_service_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_sql.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_sql_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_svg.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_svg_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_testlib.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_testlib_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_texttospeech.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_texttospeech_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_theme_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_uiplugin.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_uitools.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_uitools_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_virtualkeyboard.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_virtualkeyboard_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_vulkan_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_waylandclient.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_waylandclient_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_waylandcompositor.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_waylandcompositor_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webchannel.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webchannel_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webengine.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webengine_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webenginecore.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webenginecore_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webenginecoreheaders_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webenginewidgets.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webenginewidgets_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_websockets.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_websockets_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webview.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webview_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_widgets.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_widgets_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_x11extras.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_x11extras_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_xkbcommon_support_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_xml.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_xml_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_xmlpatterns.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_xmlpatterns_private.pri \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/qt_functions.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/qt_config.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/linux-g++/qmake.conf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/spec_post.prf \
+Makefile: analogclock.pro /usr/lib/qt/mkspecs/linux-g++/qmake.conf /usr/lib/qt/mkspecs/features/spec_pre.prf \
+		/usr/lib/qt/mkspecs/common/unix.conf \
+		/usr/lib/qt/mkspecs/common/linux.conf \
+		/usr/lib/qt/mkspecs/common/sanitize.conf \
+		/usr/lib/qt/mkspecs/common/gcc-base.conf \
+		/usr/lib/qt/mkspecs/common/gcc-base-unix.conf \
+		/usr/lib/qt/mkspecs/common/g++-base.conf \
+		/usr/lib/qt/mkspecs/common/g++-unix.conf \
+		/usr/lib/qt/mkspecs/qconfig.pri \
+		/usr/lib/qt/mkspecs/modules/qt_AkonadiAgentBase.pri \
+		/usr/lib/qt/mkspecs/modules/qt_AkonadiCalendar.pri \
+		/usr/lib/qt/mkspecs/modules/qt_AkonadiContact.pri \
+		/usr/lib/qt/mkspecs/modules/qt_AkonadiCore.pri \
+		/usr/lib/qt/mkspecs/modules/qt_AkonadiMime.pri \
+		/usr/lib/qt/mkspecs/modules/qt_AkonadiNotes.pri \
+		/usr/lib/qt/mkspecs/modules/qt_AkonadiWidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_AkonadiXml.pri \
+		/usr/lib/qt/mkspecs/modules/qt_Attica.pri \
+		/usr/lib/qt/mkspecs/modules/qt_Baloo.pri \
+		/usr/lib/qt/mkspecs/modules/qt_BluezQt.pri \
+		/usr/lib/qt/mkspecs/modules/qt_ContactEditor.pri \
+		/usr/lib/qt/mkspecs/modules/qt_GrantleeTheme.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KActivities.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KActivitiesStats.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KAlarmCal.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KArchive.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KAuth.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KAuthCore.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KBookmarks.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KCalendarCore.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KCalUtils.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KCddb.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KCMUtils.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KCodecs.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KCompletion.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KConfigCore.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KConfigGui.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KConfigWidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KContacts.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KCoreAddons.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KCrash.pri \
+		/usr/lib/qt/mkspecs/modules/qt_kdav.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KDBusAddons.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KDeclarative.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KDESu.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KDNSSD.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KDSoapClient.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KDSoapServer.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KEmoticons.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KFileMetaData.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KGAPIBlogger.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KGAPICalendar.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KGAPIContacts.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KGAPICore.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KGAPIDrive.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KGAPILatitude.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KGAPIMaps.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KGAPITasks.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KGlobalAccel.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KGuiAddons.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KHolidays.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KHtml.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KI18n.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KIconThemes.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KIdentityManagement.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KIdleTime.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KIMAP.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KIOCore.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KIOFileWidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KIOGui.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KIOWidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_Kirigami2.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KItemModels.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KItemViews.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KJobWidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KJS.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KJSApi.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KMailTransport.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KMailTransportAkonadi.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KMbox.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KMime.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KNewStuff.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KNewStuffCore.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KNotifications.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KNotifyConfig.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KNTLM.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KontactInterface.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KParts.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KPeople.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KPeopleWidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KPIMTextEdit.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KPty.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KRunner.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KScreen.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KService.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KSMTP.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KSyntaxHighlighting.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KTextEditor.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KTextWidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KUnitConversion.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KUserFeedbackCore.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KUserFeedbackWidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KWallet.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KWaylandClient.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KWaylandServer.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KWidgetsAddons.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KWindowSystem.pri \
+		/usr/lib/qt/mkspecs/modules/qt_KXmlGui.pri \
+		/usr/lib/qt/mkspecs/modules/qt_Ldap.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_accessibility_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_bootstrap_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_concurrent.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_concurrent_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_core.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_core_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_dbus.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_dbus_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_designer.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_designer_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_designercomponents_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_devicediscovery_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_edid_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_egl_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_fb_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_fontdatabase_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_glx_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_gui.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_gui_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_help.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_help_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_hunspellinputmethod_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_input_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_kms_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_linuxaccessibility_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_location.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_location_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_multimedia.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_multimedia_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_multimediagsttools_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_multimediawidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_multimediawidgets_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_network.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_network_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_networkauth.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_networkauth_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_opengl.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_opengl_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_openglextensions.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_openglextensions_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_packetprotocol_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_pdf.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_pdf_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_pdfwidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_pdfwidgets_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_platformcompositor_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_positioning.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_positioning_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_positioningquick.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_positioningquick_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_printsupport.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_printsupport_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qml.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qml_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmldebug_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmldevtools_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmlmodels.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmlmodels_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmltest.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmltest_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmlworkerscript.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qmlworkerscript_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3d.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3d_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3dassetimport.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3dassetimport_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3drender.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3drender_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3druntimerender.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3druntimerender_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3dutils.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick3dutils_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quick_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quickcontrols2.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quickcontrols2_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quickparticles_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quickshapes_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quicktemplates2.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quicktemplates2_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quickwidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_quickwidgets_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_script.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_script_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_scripttools.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_scripttools_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_sensors.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_sensors_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_serialport.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_serialport_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_service_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_sql.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_sql_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_svg.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_svg_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_testlib.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_testlib_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_texttospeech.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_texttospeech_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_theme_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_uiplugin.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_uitools.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_uitools_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_virtualkeyboard.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_virtualkeyboard_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_vulkan_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_waylandclient.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_waylandclient_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_waylandcompositor.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_waylandcompositor_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webchannel.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webchannel_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webengine.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webengine_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webenginecore.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webenginecore_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webenginecoreheaders_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webenginewidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webenginewidgets_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webkit.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webkit_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webkitwidgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_webkitwidgets_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_widgets.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_widgets_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_x11extras.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_x11extras_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_xkbcommon_support_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_xml.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_xml_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_xmlpatterns.pri \
+		/usr/lib/qt/mkspecs/modules/qt_lib_xmlpatterns_private.pri \
+		/usr/lib/qt/mkspecs/modules/qt_Libkdepim.pri \
+		/usr/lib/qt/mkspecs/modules/qt_Libkleo.pri \
+		/usr/lib/qt/mkspecs/modules/qt_phonon4qt5.pri \
+		/usr/lib/qt/mkspecs/modules/qt_PimCommon.pri \
+		/usr/lib/qt/mkspecs/modules/qt_PimCommonAkonadi.pri \
+		/usr/lib/qt/mkspecs/modules/qt_Prison.pri \
+		/usr/lib/qt/mkspecs/modules/qt_Qt5Keychain.pri \
+		/usr/lib/qt/mkspecs/modules/qt_QuickAddons.pri \
+		/usr/lib/qt/mkspecs/modules/qt_Solid.pri \
+		/usr/lib/qt/mkspecs/modules/qt_SonnetCore.pri \
+		/usr/lib/qt/mkspecs/modules/qt_SonnetUi.pri \
+		/usr/lib/qt/mkspecs/modules/qt_Syndication.pri \
+		/usr/lib/qt/mkspecs/modules/qt_ThreadWeaver.pri \
+		/usr/lib/qt/mkspecs/features/qt_functions.prf \
+		/usr/lib/qt/mkspecs/features/qt_config.prf \
+		/usr/lib/qt/mkspecs/linux-g++/qmake.conf \
+		/usr/lib/qt/mkspecs/features/spec_post.prf \
 		.qmake.stash \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/exclusive_builds.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/toolchain.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/default_pre.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/resolve_config.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/default_post.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/warn_on.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/qt.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/resources_functions.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/resources.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/moc.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/unix/opengl.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/uic.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/unix/thread.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/qmake_use.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/file_copies.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/testcase_targets.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/exceptions.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/yacc.prf \
-		../../../Qt/5.15.2/gcc_64/mkspecs/features/lex.prf \
+		/usr/lib/qt/mkspecs/features/exclusive_builds.prf \
+		/usr/lib/qt/mkspecs/features/toolchain.prf \
+		/usr/lib/qt/mkspecs/features/default_pre.prf \
+		/usr/lib/qt/mkspecs/features/resolve_config.prf \
+		/usr/lib/qt/mkspecs/features/default_post.prf \
+		/usr/lib/qt/mkspecs/features/warn_on.prf \
+		/usr/lib/qt/mkspecs/features/qt.prf \
+		/usr/lib/qt/mkspecs/features/resources_functions.prf \
+		/usr/lib/qt/mkspecs/features/resources.prf \
+		/usr/lib/qt/mkspecs/features/moc.prf \
+		/usr/lib/qt/mkspecs/features/link_ltcg.prf \
+		/usr/lib/qt/mkspecs/features/unix/opengl.prf \
+		/usr/lib/qt/mkspecs/features/uic.prf \
+		/usr/lib/qt/mkspecs/features/unix/thread.prf \
+		/usr/lib/qt/mkspecs/features/qmake_use.prf \
+		/usr/lib/qt/mkspecs/features/file_copies.prf \
+		/usr/lib/qt/mkspecs/features/testcase_targets.prf \
+		/usr/lib/qt/mkspecs/features/exceptions.prf \
+		/usr/lib/qt/mkspecs/features/yacc.prf \
+		/usr/lib/qt/mkspecs/features/lex.prf \
 		analogclock.pro
 	$(QMAKE) -o Makefile analogclock.pro
-../../../Qt/5.15.2/gcc_64/mkspecs/features/spec_pre.prf:
-../../../Qt/5.15.2/gcc_64/mkspecs/common/unix.conf:
-../../../Qt/5.15.2/gcc_64/mkspecs/common/linux.conf:
-../../../Qt/5.15.2/gcc_64/mkspecs/common/sanitize.conf:
-../../../Qt/5.15.2/gcc_64/mkspecs/common/gcc-base.conf:
-../../../Qt/5.15.2/gcc_64/mkspecs/common/gcc-base-unix.conf:
-../../../Qt/5.15.2/gcc_64/mkspecs/common/g++-base.conf:
-../../../Qt/5.15.2/gcc_64/mkspecs/common/g++-unix.conf:
-../../../Qt/5.15.2/gcc_64/mkspecs/qconfig.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3danimation.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3danimation_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dcore.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dcore_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dextras.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dextras_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dinput.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dinput_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dlogic.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dlogic_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquick.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquick_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickanimation.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickanimation_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickextras.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickextras_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickinput.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickinput_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickrender.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickrender_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickscene2d.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3dquickscene2d_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3drender.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_3drender_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_accessibility_support_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_bluetooth.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_bluetooth_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_bodymovin_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_bootstrap_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_charts.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_charts_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_concurrent.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_concurrent_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_core.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_core_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_datavisualization.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_datavisualization_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_dbus.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_dbus_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_designer.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_designer_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_designercomponents_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_devicediscovery_support_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_edid_support_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_egl_support_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_fb_support_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_fontdatabase_support_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_gamepad.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_gamepad_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_glx_support_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_gui.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_gui_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_help.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_help_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_input_support_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_kms_support_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_linuxaccessibility_support_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_location.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_location_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_multimedia.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_multimedia_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_multimediagsttools_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_multimediawidgets.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_multimediawidgets_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_network.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_network_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_networkauth.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_networkauth_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_nfc.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_nfc_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_opengl.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_opengl_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_openglextensions.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_openglextensions_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_packetprotocol_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_platformcompositor_support_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_positioning.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_positioning_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_positioningquick.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_positioningquick_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_printsupport.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_printsupport_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_purchasing.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_purchasing_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qml.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qml_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qmldebug_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qmldevtools_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qmlmodels.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qmlmodels_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qmltest.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qmltest_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qmlworkerscript.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qmlworkerscript_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3d.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3d_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3dassetimport.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3dassetimport_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3drender.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3drender_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3druntimerender.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3druntimerender_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3dutils.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick3dutils_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quick_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quickcontrols2.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quickcontrols2_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quickparticles_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quickshapes_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quicktemplates2.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quicktemplates2_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quickwidgets.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_quickwidgets_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_remoteobjects.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_remoteobjects_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_repparser.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_repparser_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_script.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_script_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_scripttools.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_scripttools_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_scxml.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_scxml_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_sensors.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_sensors_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_serialbus.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_serialbus_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_serialport.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_serialport_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_service_support_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_sql.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_sql_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_svg.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_svg_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_testlib.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_testlib_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_texttospeech.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_texttospeech_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_theme_support_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_uiplugin.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_uitools.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_uitools_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_virtualkeyboard.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_virtualkeyboard_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_vulkan_support_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_waylandclient.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_waylandclient_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_waylandcompositor.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_waylandcompositor_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webchannel.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webchannel_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webengine.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webengine_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webenginecore.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webenginecore_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webenginecoreheaders_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webenginewidgets.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webenginewidgets_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_websockets.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_websockets_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webview.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_webview_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_widgets.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_widgets_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_x11extras.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_x11extras_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_xkbcommon_support_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_xml.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_xml_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_xmlpatterns.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/modules/qt_lib_xmlpatterns_private.pri:
-../../../Qt/5.15.2/gcc_64/mkspecs/features/qt_functions.prf:
-../../../Qt/5.15.2/gcc_64/mkspecs/features/qt_config.prf:
-../../../Qt/5.15.2/gcc_64/mkspecs/linux-g++/qmake.conf:
-../../../Qt/5.15.2/gcc_64/mkspecs/features/spec_post.prf:
+/usr/lib/qt/mkspecs/features/spec_pre.prf:
+/usr/lib/qt/mkspecs/common/unix.conf:
+/usr/lib/qt/mkspecs/common/linux.conf:
+/usr/lib/qt/mkspecs/common/sanitize.conf:
+/usr/lib/qt/mkspecs/common/gcc-base.conf:
+/usr/lib/qt/mkspecs/common/gcc-base-unix.conf:
+/usr/lib/qt/mkspecs/common/g++-base.conf:
+/usr/lib/qt/mkspecs/common/g++-unix.conf:
+/usr/lib/qt/mkspecs/qconfig.pri:
+/usr/lib/qt/mkspecs/modules/qt_AkonadiAgentBase.pri:
+/usr/lib/qt/mkspecs/modules/qt_AkonadiCalendar.pri:
+/usr/lib/qt/mkspecs/modules/qt_AkonadiContact.pri:
+/usr/lib/qt/mkspecs/modules/qt_AkonadiCore.pri:
+/usr/lib/qt/mkspecs/modules/qt_AkonadiMime.pri:
+/usr/lib/qt/mkspecs/modules/qt_AkonadiNotes.pri:
+/usr/lib/qt/mkspecs/modules/qt_AkonadiWidgets.pri:
+/usr/lib/qt/mkspecs/modules/qt_AkonadiXml.pri:
+/usr/lib/qt/mkspecs/modules/qt_Attica.pri:
+/usr/lib/qt/mkspecs/modules/qt_Baloo.pri:
+/usr/lib/qt/mkspecs/modules/qt_BluezQt.pri:
+/usr/lib/qt/mkspecs/modules/qt_ContactEditor.pri:
+/usr/lib/qt/mkspecs/modules/qt_GrantleeTheme.pri:
+/usr/lib/qt/mkspecs/modules/qt_KActivities.pri:
+/usr/lib/qt/mkspecs/modules/qt_KActivitiesStats.pri:
+/usr/lib/qt/mkspecs/modules/qt_KAlarmCal.pri:
+/usr/lib/qt/mkspecs/modules/qt_KArchive.pri:
+/usr/lib/qt/mkspecs/modules/qt_KAuth.pri:
+/usr/lib/qt/mkspecs/modules/qt_KAuthCore.pri:
+/usr/lib/qt/mkspecs/modules/qt_KBookmarks.pri:
+/usr/lib/qt/mkspecs/modules/qt_KCalendarCore.pri:
+/usr/lib/qt/mkspecs/modules/qt_KCalUtils.pri:
+/usr/lib/qt/mkspecs/modules/qt_KCddb.pri:
+/usr/lib/qt/mkspecs/modules/qt_KCMUtils.pri:
+/usr/lib/qt/mkspecs/modules/qt_KCodecs.pri:
+/usr/lib/qt/mkspecs/modules/qt_KCompletion.pri:
+/usr/lib/qt/mkspecs/modules/qt_KConfigCore.pri:
+/usr/lib/qt/mkspecs/modules/qt_KConfigGui.pri:
+/usr/lib/qt/mkspecs/modules/qt_KConfigWidgets.pri:
+/usr/lib/qt/mkspecs/modules/qt_KContacts.pri:
+/usr/lib/qt/mkspecs/modules/qt_KCoreAddons.pri:
+/usr/lib/qt/mkspecs/modules/qt_KCrash.pri:
+/usr/lib/qt/mkspecs/modules/qt_kdav.pri:
+/usr/lib/qt/mkspecs/modules/qt_KDBusAddons.pri:
+/usr/lib/qt/mkspecs/modules/qt_KDeclarative.pri:
+/usr/lib/qt/mkspecs/modules/qt_KDESu.pri:
+/usr/lib/qt/mkspecs/modules/qt_KDNSSD.pri:
+/usr/lib/qt/mkspecs/modules/qt_KDSoapClient.pri:
+/usr/lib/qt/mkspecs/modules/qt_KDSoapServer.pri:
+/usr/lib/qt/mkspecs/modules/qt_KEmoticons.pri:
+/usr/lib/qt/mkspecs/modules/qt_KFileMetaData.pri:
+/usr/lib/qt/mkspecs/modules/qt_KGAPIBlogger.pri:
+/usr/lib/qt/mkspecs/modules/qt_KGAPICalendar.pri:
+/usr/lib/qt/mkspecs/modules/qt_KGAPIContacts.pri:
+/usr/lib/qt/mkspecs/modules/qt_KGAPICore.pri:
+/usr/lib/qt/mkspecs/modules/qt_KGAPIDrive.pri:
+/usr/lib/qt/mkspecs/modules/qt_KGAPILatitude.pri:
+/usr/lib/qt/mkspecs/modules/qt_KGAPIMaps.pri:
+/usr/lib/qt/mkspecs/modules/qt_KGAPITasks.pri:
+/usr/lib/qt/mkspecs/modules/qt_KGlobalAccel.pri:
+/usr/lib/qt/mkspecs/modules/qt_KGuiAddons.pri:
+/usr/lib/qt/mkspecs/modules/qt_KHolidays.pri:
+/usr/lib/qt/mkspecs/modules/qt_KHtml.pri:
+/usr/lib/qt/mkspecs/modules/qt_KI18n.pri:
+/usr/lib/qt/mkspecs/modules/qt_KIconThemes.pri:
+/usr/lib/qt/mkspecs/modules/qt_KIdentityManagement.pri:
+/usr/lib/qt/mkspecs/modules/qt_KIdleTime.pri:
+/usr/lib/qt/mkspecs/modules/qt_KIMAP.pri:
+/usr/lib/qt/mkspecs/modules/qt_KIOCore.pri:
+/usr/lib/qt/mkspecs/modules/qt_KIOFileWidgets.pri:
+/usr/lib/qt/mkspecs/modules/qt_KIOGui.pri:
+/usr/lib/qt/mkspecs/modules/qt_KIOWidgets.pri:
+/usr/lib/qt/mkspecs/modules/qt_Kirigami2.pri:
+/usr/lib/qt/mkspecs/modules/qt_KItemModels.pri:
+/usr/lib/qt/mkspecs/modules/qt_KItemViews.pri:
+/usr/lib/qt/mkspecs/modules/qt_KJobWidgets.pri:
+/usr/lib/qt/mkspecs/modules/qt_KJS.pri:
+/usr/lib/qt/mkspecs/modules/qt_KJSApi.pri:
+/usr/lib/qt/mkspecs/modules/qt_KMailTransport.pri:
+/usr/lib/qt/mkspecs/modules/qt_KMailTransportAkonadi.pri:
+/usr/lib/qt/mkspecs/modules/qt_KMbox.pri:
+/usr/lib/qt/mkspecs/modules/qt_KMime.pri:
+/usr/lib/qt/mkspecs/modules/qt_KNewStuff.pri:
+/usr/lib/qt/mkspecs/modules/qt_KNewStuffCore.pri:
+/usr/lib/qt/mkspecs/modules/qt_KNotifications.pri:
+/usr/lib/qt/mkspecs/modules/qt_KNotifyConfig.pri:
+/usr/lib/qt/mkspecs/modules/qt_KNTLM.pri:
+/usr/lib/qt/mkspecs/modules/qt_KontactInterface.pri:
+/usr/lib/qt/mkspecs/modules/qt_KParts.pri:
+/usr/lib/qt/mkspecs/modules/qt_KPeople.pri:
+/usr/lib/qt/mkspecs/modules/qt_KPeopleWidgets.pri:
+/usr/lib/qt/mkspecs/modules/qt_KPIMTextEdit.pri:
+/usr/lib/qt/mkspecs/modules/qt_KPty.pri:
+/usr/lib/qt/mkspecs/modules/qt_KRunner.pri:
+/usr/lib/qt/mkspecs/modules/qt_KScreen.pri:
+/usr/lib/qt/mkspecs/modules/qt_KService.pri:
+/usr/lib/qt/mkspecs/modules/qt_KSMTP.pri:
+/usr/lib/qt/mkspecs/modules/qt_KSyntaxHighlighting.pri:
+/usr/lib/qt/mkspecs/modules/qt_KTextEditor.pri:
+/usr/lib/qt/mkspecs/modules/qt_KTextWidgets.pri:
+/usr/lib/qt/mkspecs/modules/qt_KUnitConversion.pri:
+/usr/lib/qt/mkspecs/modules/qt_KUserFeedbackCore.pri:
+/usr/lib/qt/mkspecs/modules/qt_KUserFeedbackWidgets.pri:
+/usr/lib/qt/mkspecs/modules/qt_KWallet.pri:
+/usr/lib/qt/mkspecs/modules/qt_KWaylandClient.pri:
+/usr/lib/qt/mkspecs/modules/qt_KWaylandServer.pri:
+/usr/lib/qt/mkspecs/modules/qt_KWidgetsAddons.pri:
+/usr/lib/qt/mkspecs/modules/qt_KWindowSystem.pri:
+/usr/lib/qt/mkspecs/modules/qt_KXmlGui.pri:
+/usr/lib/qt/mkspecs/modules/qt_Ldap.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_accessibility_support_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_bootstrap_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_concurrent.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_concurrent_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_core.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_core_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_dbus.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_dbus_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_designer.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_designer_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_designercomponents_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_devicediscovery_support_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_edid_support_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_egl_support_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_eglfs_kms_support_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_eglfsdeviceintegration_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_eventdispatcher_support_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_fb_support_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_fontdatabase_support_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_glx_support_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_gui.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_gui_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_help.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_help_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_hunspellinputmethod_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_input_support_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_kms_support_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_linuxaccessibility_support_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_location.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_location_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_multimedia.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_multimedia_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_multimediagsttools_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_multimediawidgets.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_multimediawidgets_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_network.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_network_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_networkauth.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_networkauth_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_opengl.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_opengl_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_openglextensions.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_openglextensions_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_packetprotocol_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_pdf.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_pdf_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_pdfwidgets.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_pdfwidgets_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_platformcompositor_support_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_positioning.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_positioning_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_positioningquick.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_positioningquick_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_printsupport.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_printsupport_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_qml.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_qml_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_qmldebug_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_qmldevtools_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_qmlmodels.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_qmlmodels_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_qmltest.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_qmltest_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_qmlworkerscript.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_qmlworkerscript_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_qtmultimediaquicktools_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3d.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3d_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3dassetimport.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3dassetimport_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3drender.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3drender_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3druntimerender.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3druntimerender_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3dutils.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick3dutils_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quick_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quickcontrols2.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quickcontrols2_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quickparticles_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quickshapes_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quicktemplates2.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quicktemplates2_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quickwidgets.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_quickwidgets_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_script.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_script_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_scripttools.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_scripttools_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_sensors.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_sensors_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_serialport.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_serialport_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_service_support_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_sql.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_sql_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_svg.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_svg_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_testlib.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_testlib_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_texttospeech.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_texttospeech_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_theme_support_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_uiplugin.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_uitools.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_uitools_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_virtualkeyboard.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_virtualkeyboard_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_vulkan_support_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_waylandclient.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_waylandclient_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_waylandcompositor.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_waylandcompositor_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_webchannel.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_webchannel_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_webengine.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_webengine_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_webenginecore.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_webenginecore_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_webenginecoreheaders_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_webenginewidgets.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_webenginewidgets_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_webkit.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_webkit_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_webkitwidgets.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_webkitwidgets_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_widgets.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_widgets_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_x11extras.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_x11extras_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_xcb_qpa_lib_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_xkbcommon_support_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_xml.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_xml_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_xmlpatterns.pri:
+/usr/lib/qt/mkspecs/modules/qt_lib_xmlpatterns_private.pri:
+/usr/lib/qt/mkspecs/modules/qt_Libkdepim.pri:
+/usr/lib/qt/mkspecs/modules/qt_Libkleo.pri:
+/usr/lib/qt/mkspecs/modules/qt_phonon4qt5.pri:
+/usr/lib/qt/mkspecs/modules/qt_PimCommon.pri:
+/usr/lib/qt/mkspecs/modules/qt_PimCommonAkonadi.pri:
+/usr/lib/qt/mkspecs/modules/qt_Prison.pri:
+/usr/lib/qt/mkspecs/modules/qt_Qt5Keychain.pri:
+/usr/lib/qt/mkspecs/modules/qt_QuickAddons.pri:
+/usr/lib/qt/mkspecs/modules/qt_Solid.pri:
+/usr/lib/qt/mkspecs/modules/qt_SonnetCore.pri:
+/usr/lib/qt/mkspecs/modules/qt_SonnetUi.pri:
+/usr/lib/qt/mkspecs/modules/qt_Syndication.pri:
+/usr/lib/qt/mkspecs/modules/qt_ThreadWeaver.pri:
+/usr/lib/qt/mkspecs/features/qt_functions.prf:
+/usr/lib/qt/mkspecs/features/qt_config.prf:
+/usr/lib/qt/mkspecs/linux-g++/qmake.conf:
+/usr/lib/qt/mkspecs/features/spec_post.prf:
 .qmake.stash:
-../../../Qt/5.15.2/gcc_64/mkspecs/features/exclusive_builds.prf:
-../../../Qt/5.15.2/gcc_64/mkspecs/features/toolchain.prf:
-../../../Qt/5.15.2/gcc_64/mkspecs/features/default_pre.prf:
-../../../Qt/5.15.2/gcc_64/mkspecs/features/resolve_config.prf:
-../../../Qt/5.15.2/gcc_64/mkspecs/features/default_post.prf:
-../../../Qt/5.15.2/gcc_64/mkspecs/features/warn_on.prf:
-../../../Qt/5.15.2/gcc_64/mkspecs/features/qt.prf:
-../../../Qt/5.15.2/gcc_64/mkspecs/features/resources_functions.prf:
-../../../Qt/5.15.2/gcc_64/mkspecs/features/resources.prf:
-../../../Qt/5.15.2/gcc_64/mkspecs/features/moc.prf:
-../../../Qt/5.15.2/gcc_64/mkspecs/features/unix/opengl.prf:
-../../../Qt/5.15.2/gcc_64/mkspecs/features/uic.prf:
-../../../Qt/5.15.2/gcc_64/mkspecs/features/unix/thread.prf:
-../../../Qt/5.15.2/gcc_64/mkspecs/features/qmake_use.prf:
-../../../Qt/5.15.2/gcc_64/mkspecs/features/file_copies.prf:
-../../../Qt/5.15.2/gcc_64/mkspecs/features/testcase_targets.prf:
-../../../Qt/5.15.2/gcc_64/mkspecs/features/exceptions.prf:
-../../../Qt/5.15.2/gcc_64/mkspecs/features/yacc.prf:
-../../../Qt/5.15.2/gcc_64/mkspecs/features/lex.prf:
+/usr/lib/qt/mkspecs/features/exclusive_builds.prf:
+/usr/lib/qt/mkspecs/features/toolchain.prf:
+/usr/lib/qt/mkspecs/features/default_pre.prf:
+/usr/lib/qt/mkspecs/features/resolve_config.prf:
+/usr/lib/qt/mkspecs/features/default_post.prf:
+/usr/lib/qt/mkspecs/features/warn_on.prf:
+/usr/lib/qt/mkspecs/features/qt.prf:
+/usr/lib/qt/mkspecs/features/resources_functions.prf:
+/usr/lib/qt/mkspecs/features/resources.prf:
+/usr/lib/qt/mkspecs/features/moc.prf:
+/usr/lib/qt/mkspecs/features/link_ltcg.prf:
+/usr/lib/qt/mkspecs/features/unix/opengl.prf:
+/usr/lib/qt/mkspecs/features/uic.prf:
+/usr/lib/qt/mkspecs/features/unix/thread.prf:
+/usr/lib/qt/mkspecs/features/qmake_use.prf:
+/usr/lib/qt/mkspecs/features/file_copies.prf:
+/usr/lib/qt/mkspecs/features/testcase_targets.prf:
+/usr/lib/qt/mkspecs/features/exceptions.prf:
+/usr/lib/qt/mkspecs/features/yacc.prf:
+/usr/lib/qt/mkspecs/features/lex.prf:
 analogclock.pro:
 qmake: FORCE
 	@$(QMAKE) -o Makefile analogclock.pro
@@ -713,7 +935,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
-	$(COPY_FILE) --parents ../../../Qt/5.15.2/gcc_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents /usr/lib/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents main.cpp $(DISTDIR)/
 
 
@@ -743,8 +965,8 @@ compiler_rcc_clean:
 compiler_moc_predefs_make_all: moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc_predefs.h
-moc_predefs.h: ../../../Qt/5.15.2/gcc_64/mkspecs/features/data/dummy.cpp
-	g++ -pipe -O2 -Wall -Wextra -dM -E -o moc_predefs.h ../../../Qt/5.15.2/gcc_64/mkspecs/features/data/dummy.cpp
+moc_predefs.h: /usr/lib/qt/mkspecs/features/data/dummy.cpp
+	g++ -pipe -O2 -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/qt/mkspecs/features/data/dummy.cpp
 
 compiler_moc_header_make_all:
 compiler_moc_header_clean:
@@ -764,352 +986,7 @@ compiler_clean: compiler_moc_predefs_clean
 
 ####### Compile
 
-main.o: main.cpp ../../../Qt/5.15.2/gcc_64/include/QtGui/QtGui \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/QtGuiDepends \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/QtCore \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/QtCoreDepends \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qglobal.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qconfig-bootstrapped.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qconfig.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qtcore-config.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qsystemdetection.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qprocessordetection.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qcompilerdetection.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qtypeinfo.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qsysinfo.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qlogging.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qflags.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qatomic.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qbasicatomic.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qatomic_bootstrap.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qgenericatomic.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qatomic_cxx11.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qatomic_msvc.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qglobalstatic.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qmutex.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qnumeric.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qversiontagging.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qabstractanimation.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qobject.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qobjectdefs.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qnamespace.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qobjectdefs_impl.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qstring.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qchar.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qbytearray.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qrefcount.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qarraydata.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qstringliteral.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qstringalgorithms.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qstringview.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qstringbuilder.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qlist.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qalgorithms.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qiterator.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qhashfunctions.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qpair.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qvector.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qcontainertools_impl.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qpoint.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qbytearraylist.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qstringlist.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qregexp.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qstringmatcher.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qcoreevent.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qscopedpointer.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qmetatype.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qvarlengtharray.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qcontainerfwd.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qobject_impl.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qabstracteventdispatcher.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qeventloop.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qabstractitemmodel.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qvariant.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qmap.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qdebug.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qhash.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qtextstream.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qiodevice.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qlocale.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qshareddata.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qset.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qcontiguouscache.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qsharedpointer.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qsharedpointer_impl.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qabstractnativeeventfilter.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qabstractproxymodel.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qabstractstate.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qabstracttransition.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qanimationgroup.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qarraydataops.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qarraydatapointer.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qbasictimer.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qbitarray.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qbuffer.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qbytearraymatcher.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qcache.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qcalendar.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qcborarray.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qcborvalue.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qdatetime.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qcborcommon.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qregularexpression.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qurl.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qurlquery.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/quuid.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qcbormap.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qcborstream.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qcborstreamreader.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qfloat16.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qcborstreamwriter.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qcollator.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qcommandlineoption.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qcommandlineparser.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qcoreapplication.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qconcatenatetablesproxymodel.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qcryptographichash.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qdatastream.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qdeadlinetimer.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qelapsedtimer.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qdir.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qfileinfo.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qfile.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qfiledevice.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qdiriterator.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qeasingcurve.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qendian.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qeventtransition.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qexception.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qfactoryinterface.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qfileselector.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/QObject \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/QStringList \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qfilesystemwatcher.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qfinalstate.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qfuture.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qfutureinterface.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qrunnable.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qresultstore.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qfuturesynchronizer.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qfuturewatcher.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qhistorystate.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qidentityproxymodel.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qisenum.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qitemselectionmodel.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qjsonarray.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qjsonvalue.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qjsondocument.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qjsonobject.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qlibrary.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qlibraryinfo.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qversionnumber.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qline.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qlinkedlist.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qlockfile.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qloggingcategory.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qmargins.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qmath.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qmessageauthenticationcode.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qmetaobject.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qmimedata.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qmimedatabase.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qmimetype.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qobjectcleanuphandler.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qoperatingsystemversion.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qparallelanimationgroup.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qpauseanimation.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qplugin.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qpointer.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qpluginloader.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qprocess.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qpropertyanimation.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qvariantanimation.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qqueue.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qrandom.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qreadwritelock.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qrect.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qsize.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qresource.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qsavefile.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qscopedvaluerollback.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qscopeguard.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qsemaphore.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qsequentialanimationgroup.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qsettings.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qsharedmemory.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qsignalmapper.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qsignaltransition.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qsocketnotifier.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qsortfilterproxymodel.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qstack.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qstandardpaths.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qstate.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qstatemachine.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qstorageinfo.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qstringlistmodel.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qsystemsemaphore.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qtemporarydir.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qtemporaryfile.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qtextboundaryfinder.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qtextcodec.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qthread.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qthreadpool.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qthreadstorage.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qtimeline.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qtimer.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qtimezone.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qtranslator.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qtransposeproxymodel.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qtypetraits.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qwaitcondition.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/QDeadlineTimer \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qwineventnotifier.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qxmlstream.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qtcoreversion.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qtguiglobal.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qtgui-config.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qabstracttextdocumentlayout.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qtextlayout.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qcolor.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qrgb.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qrgba64.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qevent.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qwindowdefs.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qwindowdefs_win.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qregion.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qkeysequence.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qvector2d.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qtouchdevice.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qtextformat.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qfont.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qpen.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qbrush.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qmatrix.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qpolygon.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qtransform.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qimage.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qpaintdevice.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qpixelformat.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qpixmap.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qtextoption.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qglyphrun.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qrawfont.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qfontdatabase.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qtextcursor.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qtextdocument.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qpalette.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qaccessible.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qaccessiblebridge.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qaccessibleobject.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qaccessibleplugin.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qbackingstore.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qwindow.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/QEvent \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/QMargins \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/QRect \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qsurface.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qsurfaceformat.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qicon.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qcursor.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qbitmap.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qclipboard.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qcolorspace.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qcolortransform.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qdesktopservices.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qdrag.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qfontinfo.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qfontmetrics.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qgenericmatrix.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qgenericplugin.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qgenericpluginfactory.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qguiapplication.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qinputmethod.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qiconengine.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qiconengineplugin.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qimageiohandler.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qimagereader.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qimagewriter.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qmatrix4x4.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qvector3d.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qvector4d.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qquaternion.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qmovie.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qoffscreensurface.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qopengl.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/qt_windows.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qopengles2ext.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qopenglext.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qopenglbuffer.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qopenglcontext.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/QScopedPointer \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/QSurfaceFormat \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qopenglversionfunctions.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qopengldebug.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qopenglextrafunctions.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qopenglfunctions.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qopenglframebufferobject.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qopenglpaintdevice.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qopenglpixeltransferoptions.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/QSharedDataPointer \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qopenglshaderprogram.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qopengltexture.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qopengltextureblitter.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/QMatrix3x3 \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/QMatrix4x4 \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qopengltimerquery.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qopenglvertexarrayobject.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qopenglwindow.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/QPaintDeviceWindow \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qpaintdevicewindow.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/QWindow \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/QPaintDevice \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/QOpenGLContext \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/QImage \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qpagedpaintdevice.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qpagelayout.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qpagesize.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qpaintengine.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qpainter.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qpainterpath.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qpdfwriter.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qpicture.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qpictureformatplugin.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qpixmapcache.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qrasterwindow.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qscreen.h \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/QList \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/QSize \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/QSizeF \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/QTransform \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qsessionmanager.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qstandarditemmodel.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qstatictext.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qstylehints.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qsyntaxhighlighter.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qtextobject.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qtextdocumentfragment.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qtextdocumentwriter.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qtextlist.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qtexttable.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qvalidator.h \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/qtguiversion.h \
-		../../../Qt/5.15.2/gcc_64/include/QtWidgets/QApplication \
-		../../../Qt/5.15.2/gcc_64/include/QtWidgets/qapplication.h \
-		../../../Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgetsglobal.h \
-		../../../Qt/5.15.2/gcc_64/include/QtWidgets/qtwidgets-config.h \
-		../../../Qt/5.15.2/gcc_64/include/QtWidgets/qdesktopwidget.h \
-		../../../Qt/5.15.2/gcc_64/include/QtWidgets/qwidget.h \
-		../../../Qt/5.15.2/gcc_64/include/QtWidgets/qsizepolicy.h \
-		../../../Qt/5.15.2/gcc_64/include/QtWidgets/QWidget \
-		../../../Qt/5.15.2/gcc_64/include/QtWidgets/QSystemTrayIcon \
-		../../../Qt/5.15.2/gcc_64/include/QtWidgets/qsystemtrayicon.h \
-		../../../Qt/5.15.2/gcc_64/include/QtWidgets/QMenu \
-		../../../Qt/5.15.2/gcc_64/include/QtWidgets/qmenu.h \
-		../../../Qt/5.15.2/gcc_64/include/QtWidgets/qaction.h \
-		../../../Qt/5.15.2/gcc_64/include/QtWidgets/qactiongroup.h \
-		../../../Qt/5.15.2/gcc_64/include/QtWidgets/QAction \
-		../../../Qt/5.15.2/gcc_64/include/QtGui/QIcon \
-		../../../Qt/5.15.2/gcc_64/include/QtCore/QResource
+main.o: main.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 ####### Install

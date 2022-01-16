@@ -136,6 +136,9 @@ AnalogClockWindow::AnalogClockWindow(QWidget* parent)
 
 AnalogClockWindow::~AnalogClockWindow()
 {
+    setWindowFlags(windowFlags() & ~Qt::X11BypassWindowManagerHint);
+    setWindowFlags(windowFlags() & ~Qt::WindowTransparentForInput);
+    setWindowFlags(windowFlags() & ~Qt::X11BypassWindowManagerHint);
     std::cout << "Quited!" << std::endl;
 }
 
